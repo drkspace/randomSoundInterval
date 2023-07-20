@@ -66,11 +66,11 @@ function start(mean=null, std=null)
 
     if (mean==null)
     {
-        mean = Number(document.getElementById("mean").value);
+        mean = Number(document.getElementById("mean_range").value);
     }
     if (std==null)
     {
-        std = Number(document.getElementById("std").value);
+        std = Number(document.getElementById("std_range").value);
     }
 
     startHelper(mean, std);
