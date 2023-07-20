@@ -1,6 +1,7 @@
 
 
-var timer;
+var timer, cdownUpdate;
+var nextPlayTime = null;
 
 function normal(mean=0, std=1)
 {
@@ -56,6 +57,11 @@ function start(mean=null, std=null)
     } catch (error) {
         
     }
+    try{
+        clearInterval(cdownUpdate);
+    }catch(error){}
+
+
     document.getElementById('audio').play();
 
     if (mean==null)
@@ -68,6 +74,30 @@ function start(mean=null, std=null)
     }
 
     startHelper(mean, std);
+    cdownUpdate = setInterval(updateCountdown, 123);
+
+}
+
+function updateCountdown()
+{
+    ele = document.getElementById("countdown-text");
+    now = Date.now();
+
+    if(now > nextPlayTime)
+    {
+        ele.innerText = "Playing";
+        clearInterval(cdownUpdate);
+    }
+    else
+    {
+        delta = nextPlayTime-now;
+        m = Math.floor(delta/(1000*60));
+        s = Math.floor(delta/1000 %60);
+        ms = Math.floor(delta%1000);
+
+        ele.innerText = String(m).padStart(2,'0')+":"+String(s).padStart(2,'0')+":"+String(ms).padStart(3,'0');
+    }
+    
 
 }
 
@@ -75,6 +105,7 @@ function startHelper(mean, std)
 {
     var delay = normal(mean=mean, std=std);
     console.log("Now delaying with "+delay+" s.");
+    nextPlayTime = Date.now()+1000*delay;
     timer = setTimeout("document.getElementById('audio').play();startHelper("+mean+","+std+")", 1000*delay);
 }
 
@@ -86,4 +117,7 @@ function stop()
     } catch (error) {
         
     }
+    try{
+        clearInterval(cdownUpdate);
+    }catch(error){}
 }

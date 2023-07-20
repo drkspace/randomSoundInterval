@@ -27,7 +27,11 @@
             color: crimson;
             font-size: large;
         }
+        #countdown{
+            color:cornsilk;
+        }
     </style>
+    <link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet'>
 
     <script src="script.js"></script>
 </head>
@@ -60,6 +64,12 @@
     <br><br>
     <button onclick="start()">Start</button>
     <button onclick="stop()">Stop</button>
+
+<div id="countdown">
+    <h2>Countdown to next play</h2>
+    <p id="countdown-text" style="font-size: large;font-family: Aldrich; font-weight: bold;"></p>
+</div>
+
     </div>
 
     <script>
