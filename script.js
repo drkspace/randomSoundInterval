@@ -73,7 +73,7 @@ function start(mean=null, std=null)
 function startHelper(mean, std)
 {
     var delay = normal(mean=mean, std=std);
-    console.log(delay);
+    console.log("Now delaying with "+delay+" s.");
     timer = setTimeout("document.getElementById('audio').play();startHelper("+mean+","+std+")", 1000*delay);
 }
 
