@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            background: #00ff0d;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Horizontal centering */
+            align-items: center; /* Vertical centering */
+            height: 100vh; /* Make sure the body takes the full viewport height */
+            margin: 0; /* Remove default body margin */
+        }
+        
+        #upload{
+            outline-style: dotted;
+            outline-color: cornsilk;
+            text-align: center;
+            cursor: pointer;
+            width: 95%;
+        }
+        #audiodiv{
+            text-align: center;
+            color: crimson;
+            font-size: large;
+        }
+    </style>
+
+    <script src="script.js"></script>
+</head>
+
+<body>
+
+    <!-- <form id="uploadForm"   > -->
+        <div id="upload" ondragover="handleDragOver(event)" ondrop="handleFileDrop(event)">
+            <!-- <input type="file" id="fileInput" style="display: none;"/ accept="audio/*" oninput="handleFileDrop(event)"> -->
+            <p style="color: cornsilk;font-size: 7em;">Drag Your Audio Here</p>
+
+        </div>
+    <!-- </form> -->
+    
+    <br>
+    <br>
+
+    <div id="audiodiv" hidden>
+        <p>Remeber to unmute the audio</p>
+    <audio controls muted id="audio">
+    
+    </audio>
+    <br>
+    <br>
+    <label for="mean">Mean Delay</label>
+    <input type="range" id="mean" min="1" max="300" value="60" oninput="this.nextElementSibling.value = this.value+' s'">
+    <output>60 s</output>
+    <br><br>
+    <label for="std">Spread</label>
+    <input type="range" id="std" min="1" max="30" value="10" oninput="this.nextElementSibling.value = this.value+' s'">
+    <output>10 s</output>
+
+    <br><br>
+    <button onclick="start()">Start</button>
+    <button onclick="stop()">Stop</button>
+    </div>
+
+</body>
+</html>
