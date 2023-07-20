@@ -56,6 +56,7 @@ function start(mean=null, std=null)
     } catch (error) {
         
     }
+    document.getElementById('audio').play();
 
     if (mean==null)
     {
