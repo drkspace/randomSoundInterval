@@ -60,5 +60,15 @@
     <button onclick="stop()">Stop</button>
     </div>
 
+    <script>
+        document.getElementById("audio").addEventListener('error', function() {
+            console.error('Error loading the audio file:', audioElement.error.message);
+            window.alert("Error loading audio file.");
+        });
+        document.getElementById("audio").play().catch(function(error) {
+            console.error('Error playing the audio:', error.message);
+            window.alert("Error playing audio file.");
+        });
+    </script>
 </body>
 </html>
